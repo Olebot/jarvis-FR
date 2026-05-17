@@ -1,27 +1,28 @@
 # Jarvis FR — Python dependencies
-# Compatible Python 3.11 + CUDA 12.1 + RTX 3070 Laptop
+# Compatible Python 3.12 + CUDA 12.1 + RTX 3070 Laptop
+# coqui-tts = fork communautaire maintenu (l'original TTS est abandonné depuis 2024)
 
-# --- TTS (XTTS-v2 GPU) ---
-TTS==0.22.0
-torch==2.2.2
-torchaudio==2.2.2
+# --- TTS (XTTS-v2 GPU) — fork actif ---
+coqui-tts==0.25.3
+torch==2.5.1
+torchaudio==2.5.1
 
 # --- STT (faster-whisper GPU CUDA) ---
-faster-whisper==1.0.3
-sounddevice==0.4.7
+faster-whisper==1.1.0
+sounddevice==0.5.1
 soundfile==0.12.1
 numpy==1.26.4
 webrtcvad==2.0.10
 
 # --- LLM ---
-ollama==0.3.3
-anthropic==0.40.0
-openai==1.55.0
+ollama==0.4.4
+anthropic==0.42.0
+openai==1.58.1
 google-generativeai==0.8.3
 
 # --- Google APIs ---
-google-api-python-client==2.149.0
-google-auth==2.35.0
+google-api-python-client==2.156.0
+google-auth==2.37.0
 google-auth-oauthlib==1.2.1
 google-auth-httplib2==0.2.0
 
@@ -29,14 +30,14 @@ google-auth-httplib2==0.2.0
 pyautogui==0.9.54
 pygetwindow==0.0.9
 keyboard==0.13.5
-psutil==6.1.0
+psutil==6.1.1
 pycaw==20240210
-comtypes==1.4.7
-playwright==1.48.0
+comtypes==1.4.8
+playwright==1.49.1
 
 # --- Tray UI ---
 pystray==0.19.5
-Pillow==10.4.0
+Pillow==11.0.0
 
 # --- Misc ---
 pyyaml==6.0.2

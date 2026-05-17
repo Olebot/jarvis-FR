@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
     Installeur Jarvis FR pour Windows 11 — Désinstalle anciens Python sur C:,
-    installe Python 3.11 + venv + CUDA torch + XTTS-v2 + Whisper + Ollama
+    installe Python 3.12 + venv + CUDA torch + XTTS-v2 + Whisper + Ollama
     sur le disque choisi par l'utilisateur.
 
 .DESCRIPTION
@@ -56,9 +56,9 @@ function Uninstall-OldPython {
     & "$PSScriptRoot\Uninstall-OldPython.ps1"
 }
 
-function Install-Python311 {
+function Install-Python312 {
     param([string]$InstallDir)
-    Write-Section "Installation de Python 3.11 dans $InstallDir"
+    Write-Section "Installation de Python 3.12 dans $InstallDir"
 
     $pythonExe = Join-Path $InstallDir "python.exe"
     if (Test-Path $pythonExe) {
@@ -66,9 +66,9 @@ function Install-Python311 {
         return $pythonExe
     }
 
-    $installer = "$env:TEMP\python-3.11.9-amd64.exe"
-    Write-Host "Téléchargement Python 3.11.9..."
-    Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe" -OutFile $installer
+    $installer = "$env:TEMP\python-3.12.7-amd64.exe"
+    Write-Host "Téléchargement Python 3.12.7..."
+    Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.12.7/python-3.12.7-amd64.exe" -OutFile $installer
 
     Write-Host "Installation silencieuse vers $InstallDir..."
     Start-Process -FilePath $installer -ArgumentList @(
@@ -86,7 +86,7 @@ function Install-Python311 {
     if (-not (Test-Path $pythonExe)) {
         throw "Échec d'installation Python."
     }
-    Write-Host "Python 3.11 installé." -ForegroundColor Green
+    Write-Host "Python 3.12 installé." -ForegroundColor Green
     return $pythonExe
 }
 
@@ -108,7 +108,7 @@ function Install-PythonDeps {
     $pip = "$VenvDir\Scripts\pip.exe"
 
     Write-Host "torch + torchaudio CUDA 12.1 (~2 Go)..."
-    & $pip install --no-cache-dir torch==2.2.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121
+    & $pip install --no-cache-dir torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121
 
     Write-Host "Reste des dépendances..."
     & $pip install --no-cache-dir -r $ReqFile
@@ -204,7 +204,7 @@ Write-Section "JARVIS FR — Installation Windows 11 (RTX 3070)"
 
 $drive = Get-TargetDrive -Provided $TargetDrive
 $installRoot = "${drive}:\Jarvis"
-$pythonDir   = "$installRoot\python311"
+$pythonDir   = "$installRoot\python312"
 $venvDir     = "$installRoot\venv"
 $ollamaDir   = "$installRoot\ollama"
 
@@ -221,7 +221,7 @@ if (-not $SkipPythonCleanup) {
     }
 }
 
-$pythonExe = Install-Python311 -InstallDir $pythonDir
+$pythonExe = Install-Python312 -InstallDir $pythonDir
 New-PythonVenv -PythonExe $pythonExe -VenvDir $venvDir
 Install-PythonDeps -VenvDir $venvDir -ReqFile "$PSScriptRoot\requirements.txt"
 Install-Ollama -OllamaDir $ollamaDir

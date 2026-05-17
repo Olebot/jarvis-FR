@@ -3,7 +3,9 @@
 Assistant vocal francophone local pour Windows 11, conçu pour tirer parti de votre **NVIDIA GeForce RTX 3070 Laptop GPU**.  
 Synthèse vocale **Coqui XTTS-v2** sur CUDA, reconnaissance vocale **faster-whisper** GPU, cerveau **Ollama local** (Llama 3 / Mistral) avec basculement **cloud** (Claude / GPT / Gemini), contrôle Windows 11, intégrations **Google** (Drive, Photos, Calendar, Docs, Sheets, Gmail), et pilotage **Deezer Bureau ou Web** sur commande vocale.
 
-> **Important** : Ce projet est livré comme **code source à installer chez vous**. Le script `Install-Jarvis.ps1` désinstallera proprement les anciennes versions de Python du volume Windows (C:) puis installera **Python 3.11**, **Ollama**, les modèles IA et toutes les dépendances sur le **disque de votre choix** (D:, E:, etc.) afin de libérer au maximum le volume Windows.
+> **Important** : Ce projet est livré comme **code source à installer chez vous**. Le script `Install-Jarvis.ps1` désinstallera proprement les anciennes versions de Python du volume Windows (C:) puis installera **Python 3.12**, **Ollama**, les modèles IA et toutes les dépendances sur le **disque de votre choix** (D:, E:, etc.) afin de libérer au maximum le volume Windows.
+>
+> **Choix Python 3.12** : compromis optimal stabilité/perf en 2026. Python 3.13 n'est pas (encore) viable car `ctranslate2` (cœur de faster-whisper GPU) n'a pas de wheels CUDA pour 3.13.
 
 ---
 
@@ -167,7 +169,7 @@ jarvis-windows/
 | Problème | Solution |
 |---|---|
 | `CUDA out of memory` | Réduisez la qualité TTS : `tts.precision: float16` dans `config.yaml` |
-| XTTS-v2 lent | Vérifiez `nvidia-smi` ; si CPU utilisé, réinstallez torch CUDA : `pip install torch --index-url https://download.pytorch.org/whl/cu121` |
+| XTTS-v2 lent | Vérifiez `nvidia-smi` ; si CPU utilisé, réinstallez torch CUDA : `pip install torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121` |
 | Ollama ne répond pas | `ollama serve` dans un terminal séparé, puis `ollama pull llama3.1:8b` |
 | Pas de son | Vérifiez le périphérique de sortie par défaut dans Windows |
 | Google OAuth bloqué | Ajoutez votre email comme « Utilisateur test » dans l'écran de consentement OAuth |
