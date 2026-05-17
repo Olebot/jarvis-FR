@@ -1,0 +1,72 @@
+# Jarvis FR — Configuration principale
+# Copiez ce fichier en config.yaml et adaptez les valeurs
+
+assistant:
+  name: "Jarvis"
+  language: "fr"
+  wake_word: "jarvis"           # mot d'activation (laisser vide pour mode push-to-talk)
+  greeting: "Bonjour, je suis Jarvis. Je vous écoute."
+
+tts:
+  engine: "xtts_v2"
+  device: "cuda"                # cuda | cpu
+  precision: "float16"          # float16 (RTX 3070) | float32
+  speaker_wav: "voices/sample_fr.wav"   # échantillon pour clonage voix (≥ 6s)
+  language: "fr"
+  speed: 1.0
+  output_device: null           # null = défaut Windows
+
+stt:
+  engine: "faster_whisper"
+  model: "large-v3"             # tiny | base | small | medium | large-v3
+  device: "cuda"
+  compute_type: "float16"
+  language: "fr"
+  vad_filter: true
+  input_device: null
+
+llm:
+  mode: "hybrid"                # local | cloud | hybrid
+  local:
+    provider: "ollama"
+    model: "llama3.1:8b"
+    base_url: "http://localhost:11434"
+    temperature: 0.7
+  cloud:
+    provider: "anthropic"       # anthropic | openai | gemini
+    model: "claude-sonnet-4-5"
+    temperature: 0.7
+  routing:
+    cloud_keywords:
+      - "recherche web"
+      - "actualité"
+      - "actualités"
+      - "mode cloud"
+      - "raisonnement long"
+      - "code complexe"
+
+google:
+  client_secret_file: "config/client_secret.json"
+  token_file: "config/google_token.json"
+  scopes:
+    - "https://www.googleapis.com/auth/gmail.modify"
+    - "https://www.googleapis.com/auth/drive"
+    - "https://www.googleapis.com/auth/calendar"
+    - "https://www.googleapis.com/auth/documents"
+    - "https://www.googleapis.com/auth/spreadsheets"
+    - "https://www.googleapis.com/auth/photoslibrary.readonly"
+
+deezer:
+  default_target: "ask"         # desktop | web | ask (demande à chaque fois)
+  desktop_exe: "C:\\Users\\%USERNAME%\\AppData\\Local\\Deezer\\Deezer.exe"
+  web_url: "https://www.deezer.com"
+  web_headless: false
+
+windows:
+  shutdown_grace_seconds: 30
+  screenshot_dir: "screenshots"
+
+ui:
+  show_tray_icon: true
+  show_console: true
+  hotkey_push_to_talk: "ctrl+space"
