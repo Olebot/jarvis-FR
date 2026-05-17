@@ -323,7 +323,7 @@ Le script :
 
 ## RÉSUMÉ — Checklist d'installation
 
-- [ ] Pilote NVIDIA ≥ 555 installé
+- [ ] Pilote NVIDIA ≥ 565 installé (CUDA 13.0)
 - [ ] `nvidia-smi` fonctionne et montre la RTX 3070
 - [ ] ≥ 25 Go libres sur disque cible
 - [ ] Projet Google Cloud créé, 6 APIs activées
