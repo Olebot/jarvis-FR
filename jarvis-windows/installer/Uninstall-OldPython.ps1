@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Désinstalle toutes les versions de Python détectées sur le volume C:,
     nettoie %APPDATA%\Python, %LOCALAPPDATA%\Programs\Python, pip cache,

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Désinstalle proprement Jarvis FR (Python local, venv, modèles, Ollama).
 #>

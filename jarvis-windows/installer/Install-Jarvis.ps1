@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Installeur Jarvis FR pour Windows 11 — Désinstalle anciens Python sur C:,
     installe Python 3.12 + venv + CUDA torch + XTTS-v2 + Whisper + Ollama
