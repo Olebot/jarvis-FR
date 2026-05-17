@@ -1,6 +1,6 @@
 # Jarvis FR — Guide d'installation détaillé (Windows 11 + RTX 3070)
 
-Version : **Python 3.12.7** + **CUDA 12.1** + **coqui-tts** fork + **faster-whisper 1.1**
+Version : **Python 3.12.7** + **CUDA 13.0** + **coqui-tts** fork + **faster-whisper 1.1**
 Cible : NVIDIA GeForce RTX 3070 Laptop GPU (8 Go VRAM)
 Durée totale : **30 à 60 min** (selon connexion internet)
 Espace requis sur disque cible : **~25 Go** (Python ~500 Mo + venv ~6 Go + XTTS ~2 Go + Whisper large-v3 ~3 Go + Ollama Llama 3.1 8B ~5 Go + chromium Playwright ~500 Mo + marge)
@@ -11,7 +11,7 @@ Espace requis sur disque cible : **~25 Go** (Python ~500 Mo + venv ~6 Go + XTTS 
 
 ### 0.1 Pilote NVIDIA récent
 1. Touche **Windows** → tapez `Informations système NVIDIA` → ouvrir
-2. Vérifiez **Pilote ≥ 555.85** (recommandé 560+)
+2. Vérifiez **Pilote ≥ 565** (requis pour CUDA 13.0 ; recommandé 575+)
 3. Sinon : téléchargez le dernier pilote **Game Ready** ou **Studio** :
    https://www.nvidia.com/Download/index.aspx (GeForce RTX 3070 Laptop)
 
@@ -20,7 +20,7 @@ Ouvrez **PowerShell** (utilisateur normal) :
 ```powershell
 nvidia-smi
 ```
-Doit afficher votre RTX 3070 et `CUDA Version: 12.x`. Si la commande n'existe pas, le pilote n'est pas installé.
+Doit afficher votre RTX 3070 et `CUDA Version: 13.x`. Si la commande n'existe pas, le pilote n'est pas installé.
 
 ### 0.3 Espace disque
 Touche Windows → `Stockage` → vérifiez qu'au moins **25 Go libres** sur le disque cible (D:, E:, etc.). Idéalement 40 Go pour confort.
@@ -125,7 +125,7 @@ Vous pouvez aller boire un café ☕ — il va :
 1. Désinstaller tous les Python C: + nettoyer PATH + caches pip
 2. Télécharger et installer **Python 3.12.7** dans `<DISQUE>:\Jarvis\python312\`
 3. Créer le venv dans `<DISQUE>:\Jarvis\venv\`
-4. Installer **torch 2.5.1 + torchaudio + CUDA 12.1** (~2 Go)
+4. Installer **torch 2.11.0 + torchaudio + CUDA 13.0** (~2 Go)
 5. Installer **coqui-tts**, **faster-whisper**, Google APIs, Playwright, pycaw, etc.
 6. Télécharger **Chromium** pour Playwright (~150 Mo)
 7. Installer **Ollama** + configurer `OLLAMA_MODELS` sur `<DISQUE>:\Jarvis\ollama\models\`
@@ -291,7 +291,7 @@ Au premier *« ouvre Deezer dans le navigateur »*, le Chromium Playwright s'ouv
 - Si ça reste lent, passez à un modèle plus léger : `stt.model: "small"`
 - En cas de torch CPU détecté par erreur :
   ```powershell
-  <DISQUE>:\Jarvis\venv\Scripts\pip install --force-reinstall torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+  <DISQUE>:\Jarvis\venv\Scripts\pip install --force-reinstall torch==2.11.0 torchaudio==2.11.0 --index-url https://download.pytorch.org/whl/cu130
   ```
 
 ### H. "ModuleNotFoundError: TTS"

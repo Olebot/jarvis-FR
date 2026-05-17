@@ -1,11 +1,11 @@
 # Jarvis FR — Python dependencies
-# Compatible Python 3.12 + CUDA 12.1 + RTX 3070 Laptop
+# Compatible Python 3.12 + CUDA 13.0 + RTX 3070 Laptop
 # coqui-tts = fork communautaire maintenu (l'original TTS est abandonné depuis 2024)
 
 # --- TTS (XTTS-v2 GPU) — fork actif ---
 coqui-tts==0.25.3
-torch==2.5.1
-torchaudio==2.5.1
+torch==2.11.0
+torchaudio==2.11.0
 
 # --- STT (faster-whisper GPU CUDA) ---
 faster-whisper==1.1.0

@@ -15,7 +15,7 @@ Synthèse vocale **Coqui XTTS-v2** sur CUDA, reconnaissance vocale **faster-whis
 |---|---|
 | OS | Windows 11 (64 bits) à jour |
 | GPU | NVIDIA RTX 3070 Laptop (8 Go VRAM) ou supérieur, drivers ≥ 555.x |
-| CUDA | CUDA Toolkit 12.1 (installé par le script si absent) |
+| CUDA | CUDA 13.0 (les wheels PyTorch embarquent les libs nécessaires) ; pilote ≥ 565 |
 | Disque cible | ≥ 40 Go libres (modèles XTTS-v2 + Whisper + Ollama Llama 3 8B) |
 | Microphone | Tout micro USB ou intégré |
 | Compte Google | Pour Drive/Photos/Calendar/Docs/Sheets/Gmail |
@@ -169,7 +169,7 @@ jarvis-windows/
 | Problème | Solution |
 |---|---|
 | `CUDA out of memory` | Réduisez la qualité TTS : `tts.precision: float16` dans `config.yaml` |
-| XTTS-v2 lent | Vérifiez `nvidia-smi` ; si CPU utilisé, réinstallez torch CUDA : `pip install torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121` |
+| XTTS-v2 lent | Vérifiez `nvidia-smi` ; si CPU utilisé, réinstallez torch CUDA : `pip install torch==2.11.0 torchaudio==2.11.0 --index-url https://download.pytorch.org/whl/cu130` |
 | Ollama ne répond pas | `ollama serve` dans un terminal séparé, puis `ollama pull llama3.1:8b` |
 | Pas de son | Vérifiez le périphérique de sortie par défaut dans Windows |
 | Google OAuth bloqué | Ajoutez votre email comme « Utilisateur test » dans l'écran de consentement OAuth |

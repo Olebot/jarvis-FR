@@ -9,7 +9,7 @@
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 .NOTES
-    Cible : NVIDIA RTX 3070 Laptop, CUDA 12.1
+    Cible : NVIDIA RTX 3070 Laptop, CUDA 13.0, Python 3.12
 #>
 
 [CmdletBinding()]
@@ -103,12 +103,12 @@ function New-PythonVenv {
 
 function Install-PythonDeps {
     param([string]$VenvDir, [string]$ReqFile)
-    Write-Section "Installation des dépendances Python (CUDA 12.1)"
+    Write-Section "Installation des dépendances Python (CUDA 13.0)"
 
     $pip = "$VenvDir\Scripts\pip.exe"
 
-    Write-Host "torch + torchaudio CUDA 12.1 (~2 Go)..."
-    & $pip install --no-cache-dir torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+    Write-Host "torch + torchaudio CUDA 13.0 (~2 Go)..."
+    & $pip install --no-cache-dir torch==2.11.0 torchaudio==2.11.0 --index-url https://download.pytorch.org/whl/cu130
 
     Write-Host "Reste des dépendances..."
     & $pip install --no-cache-dir -r $ReqFile

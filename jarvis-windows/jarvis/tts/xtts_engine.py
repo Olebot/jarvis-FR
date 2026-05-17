@@ -13,7 +13,7 @@ class XTTSEngine:
     """Wrapper autour de Coqui TTS XTTS-v2 avec lecture audio synchrone.
 
     Le modèle XTTS-v2 nécessite :
-        pip install TTS torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+        pip install coqui-tts torch torchaudio --index-url https://download.pytorch.org/whl/cu130
     """
 
     MODEL_NAME = "tts_models/multilingual/multi-dataset/xtts_v2"
